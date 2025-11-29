@@ -1,0 +1,50 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Model weights (large files)
+*.pt
+*.pth
+*.onnx
+*.weights
+
+# Dataset files (large)
+datafiles/
+coco_subset/images/
+coco_subset/labels/
+datasets/
+
+# Cache files
+*.cache
+labels.cache
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Results (optional - uncomment if you want to track results)
+# results/
+
+# Runs output from YOLO
+runs/
+

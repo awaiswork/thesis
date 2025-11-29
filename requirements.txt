@@ -1,0 +1,27 @@
+# Object Detection Performance Analysis
+# Python >= 3.9 required
+
+# Deep Learning Frameworks
+torch>=2.0.0
+torchvision>=0.15.0
+
+# YOLO Models
+ultralytics>=8.0.0
+
+# COCO Evaluation
+pycocotools>=2.0.6
+
+# Data Processing
+numpy>=1.23.0
+Pillow>=9.0.0
+
+# Visualization
+matplotlib>=3.5.0
+
+# Progress Bar
+tqdm>=4.64.0
+
+# Configuration
+PyYAML>=6.0
+
+

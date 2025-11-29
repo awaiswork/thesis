@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "dataset_name": "COCO val2017 subset",
+    "num_images": 5000,
+    "evaluation_date": "2025-11-29T11:07:52.339551"
+  },
+  "results": [
+    {
+      "model_name": "YOLOv10n",
+      "map50": 53.15068514803522,
+      "map50_95": 38.18873086193114,
+      "map75": 63.892354692874974,
+      "precision": 64.16052387881153,
+      "recall": 48.6654971840632,
+      "f1_score": 55.349001316146655,
+      "time_per_image_ms": 44.357188606262206,
+      "fps": 22.544260162124505,
+      "num_images": 5000,
+      "total_time_seconds": 221.78594303131104,
+      "timestamp": "2025-11-29T11:11:34.342684",
+      "ap_by_size": {
+        "small": 0,
+        "medium": 0,
+        "large": 0
+      },
+      "timing_breakdown": {
+        "preprocess_ms": 0.14407781717600301,
+        "inference_ms": 8.727332301181741,
+        "postprocess_ms": 0.6939995514199836,
+        "total_ms": 9.565409669777727
+      },
+      "model_info": {
+        "name": "YOLOv10n",
+        "parameters": 2299264,
+        "gflops": 6.7,
+        "input_size": 640
+      },
+      "hardware_info": {
+        "device": "mps",
+        "device_name": "Apple Silicon GPU",
+        "pytorch_version": "2.9.1",
+        "python_version": "3.12.1",
+        "platform": "macOS-15.3-arm64-arm-64bit"
+      }
+    }
+  ],
+  "summary": {
+    "num_models": 1,
+    "best_map50_95": {
+      "model": "YOLOv10n",
+      "value": 38.18873086193114
+    },
+    "best_map50": {
+      "model": "YOLOv10n",
+      "value": 53.15068514803522
+    },
+    "fastest": {
+      "model": "YOLOv10n",
+      "fps": 22.544260162124505
+    },
+    "slowest": {
+      "model": "YOLOv10n",
+      "fps": 22.544260162124505
+    },
+    "speed_ratio": 1.0
+  }
+}
