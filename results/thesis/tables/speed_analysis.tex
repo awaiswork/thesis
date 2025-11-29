@@ -1,0 +1,28 @@
+
+\begin{table}[htbp]
+\centering
+\caption{Inference Speed Analysis}
+\label{tab:speed_analysis}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{FPS} & \textbf{Latency (ms)} & \textbf{Real-time*} & \textbf{Mobile Feasible†} \\
+\midrule
+YOLOv10n & 462.0 & 2.2 & Yes & Yes \\
+YOLOv8n & 410.9 & 2.4 & Yes & Yes \\
+YOLOv10s & 384.5 & 2.6 & Yes & Yes \\
+YOLOv8s & 352.2 & 2.8 & Yes & Yes \\
+YOLOv10m & 270.6 & 3.7 & Yes & Yes \\
+YOLOv8m & 253.0 & 4.0 & Yes & Yes \\
+YOLOv10l & 209.1 & 4.8 & Yes & Yes \\
+YOLOv8l & 190.1 & 5.3 & Yes & Yes \\
+YOLOv10x & 159.6 & 6.3 & Yes & Yes \\
+RT-DETR-l & 147.7 & 6.8 & Yes & Yes \\
+YOLOv8x & 139.3 & 7.2 & Yes & Yes \\
+SSD300 & 82.8 & 12.1 & Yes & Yes \\
+RetinaNet & 55.0 & 18.2 & Yes & Maybe \\
+Faster R-CNN & 48.4 & 20.6 & Yes & Maybe \\
+
+\bottomrule
+\multicolumn{5}{l}{\footnotesize *Real-time: $\geq$30 FPS; †Mobile Feasible: $\geq$60 FPS on GPU (scaled for mobile)}
+\end{tabular}
+\end{table}

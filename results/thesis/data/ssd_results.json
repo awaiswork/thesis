@@ -1,0 +1,34 @@
+{
+  "family": "SSD",
+  "num_models": 1,
+  "results": [
+    {
+      "model_name": "SSD300",
+      "model_family": "SSD",
+      "model_variant": "300",
+      "map50": 41.252560416813196,
+      "map50_95": 24.960465101520118,
+      "map75": 26.16686960883252,
+      "precision": null,
+      "recall": 35.04526777896667,
+      "f1_score": null,
+      "ap_small": 5.283727449698984,
+      "ap_medium": 26.68453250719044,
+      "ap_large": 43.34106807164288,
+      "fps": 82.79159956012856,
+      "latency_ms": 12.078520107269288,
+      "preprocess_ms": 2.381821346282959,
+      "inference_ms": 8.836445426940918,
+      "postprocess_ms": 0.8596553802490234,
+      "parameters": 35641826,
+      "gflops": 34.1,
+      "model_size_mb": 0.0,
+      "input_size": 300,
+      "num_images": 5000,
+      "total_time_seconds": 60.392600536346436,
+      "timestamp": "2025-11-29T15:10:32.332324",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 4090"
+    }
+  ]
+}

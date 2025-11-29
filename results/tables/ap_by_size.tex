@@ -1,0 +1,19 @@
+% AP by Object Size Table
+% Include with: \input{tables/ap_by_size.tex}
+
+\begin{table}[htbp]
+\centering
+\caption{Average Precision by Object Size (COCO size categories)}
+\label{tab:ap_by_size}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{AP\textsubscript{small}} & \textbf{AP\textsubscript{medium}} & \textbf{AP\textsubscript{large}} \\
+ & (area $<$ 32\textsuperscript{2}) & (32\textsuperscript{2} $<$ area $<$ 96\textsuperscript{2}) & (area $>$ 96\textsuperscript{2}) \\
+\midrule
+YOLOv8x & 0.0\% & 0.0\% & 0.0\% \\
+YOLOv10x & 0.0\% & 0.0\% & 0.0\% \\
+RetinaNet & 27.0\% & 45.8\% & 53.7\% \\
+Faster R-CNN & \textbf{30.6}\% & \textbf{50.5}\% & \textbf{60.2}\% \\
+\bottomrule
+\end{tabular}
+\end{table}

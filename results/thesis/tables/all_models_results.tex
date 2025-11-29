@@ -1,0 +1,27 @@
+
+\begin{table}[htbp]
+\centering
+\caption{Comprehensive Object Detection Model Comparison}
+\label{tab:all_models_results}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Model} & \textbf{Family} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} & \textbf{Recall} & \textbf{Precision} & \textbf{FPS} & \textbf{Latency (ms)} \\
+\midrule
+YOLOv10x & YOLOv10 & 70.7 & 54.3 & 63.6 & 74.8 & 159.6 & 6.3 \\
+YOLOv8x & YOLOv8 & 70.4 & 53.9 & 64.5 & 73.7 & 139.3 & 7.2 \\
+YOLOv10l & YOLOv10 & 69.4 & 52.9 & 63.7 & 72.7 & 209.1 & 4.8 \\
+YOLOv8l & YOLOv8 & 69.2 & 52.8 & 63.1 & 74.0 & 190.1 & 5.3 \\
+RT-DETR-l & RT-DETR & 69.9 & 51.9 & 65.2 & 74.2 & 147.7 & 6.8 \\
+YOLOv10m & YOLOv10 & 67.4 & 50.8 & 60.2 & 73.3 & 270.6 & 3.7 \\
+YOLOv8m & YOLOv8 & 66.5 & 50.0 & 60.7 & 71.6 & 253.0 & 4.0 \\
+Faster R-CNN & Faster R-CNN & 67.5 & 46.7 & N/A & N/A & 48.4 & 20.6 \\
+YOLOv10s & YOLOv10 & 62.3 & 46.0 & 56.1 & 70.0 & 384.5 & 2.6 \\
+YOLOv8s & YOLOv8 & 61.1 & 44.6 & 56.0 & 68.2 & 352.2 & 2.8 \\
+RetinaNet & RetinaNet & 61.7 & 41.5 & 58.8 & N/A & 55.0 & 18.2 \\
+YOLOv10n & YOLOv10 & 53.1 & 38.2 & 48.7 & 64.1 & 462.0 & 2.2 \\
+YOLOv8n & YOLOv8 & 51.9 & 37.0 & 47.3 & 63.2 & 410.9 & 2.4 \\
+SSD300 & SSD & 41.3 & 25.0 & 35.0 & N/A & 82.8 & 12.1 \\
+
+\bottomrule
+\end{tabular}
+\end{table}

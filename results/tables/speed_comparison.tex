@@ -1,0 +1,18 @@
+% Speed Comparison Table - Inference Time Breakdown
+% Include with: \input{tables/speed_comparison.tex}
+
+\begin{table}[htbp]
+\centering
+\caption{Inference Speed Comparison (milliseconds per image)}
+\label{tab:speed_comparison}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Preprocess} & \textbf{Inference} & \textbf{Postprocess} & \textbf{Total} & \textbf{FPS} \\
+\midrule
+YOLOv8x & \textbf{0.3} & 5.3 & 0.3 & 5.8 & 138.0 \\
+YOLOv10x & \textbf{0.3} & \textbf{4.6} & \textbf{0.0} & \textbf{4.9} & \textbf{158.0} \\
+RetinaNet & 2.5 & 14.6 & 1.0 & 18.1 & 55.1 \\
+Faster R-CNN & 2.4 & 18.3 & 0.1 & 20.8 & 48.1 \\
+\bottomrule
+\end{tabular}
+\end{table}

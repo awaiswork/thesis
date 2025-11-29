@@ -38,9 +38,26 @@ def parse_args():
     parser.add_argument(
         "--models",
         nargs="+",
-        choices=["yolov8", "yolov10", "ssd", "faster_rcnn", "all"],
+        choices=["yolov8", "yolov10", "ssd", "retinanet", "faster_rcnn", "fcos", "all"],
         default=["all"],
         help="Models to evaluate (default: all)"
+    )
+    parser.add_argument(
+        "--size",
+        choices=["n", "s", "m", "l", "x"],
+        default="n",
+        help="YOLO model size: n(ano), s(mall), m(edium), l(arge), x(large) (default: n)"
+    )
+    parser.add_argument(
+        "--imgsz",
+        type=int,
+        default=640,
+        help="Input image size for YOLO models (default: 640, use 1280 for higher accuracy)"
+    )
+    parser.add_argument(
+        "--tta",
+        action="store_true",
+        help="Enable Test-Time Augmentation for YOLO models (better accuracy, slower)"
     )
     parser.add_argument(
         "--output-dir",
@@ -53,33 +70,49 @@ def parse_args():
         action="store_true",
         help="Automatically generate thesis figures after evaluation"
     )
+    parser.add_argument(
+        "--max-accuracy",
+        action="store_true",
+        help="Use maximum accuracy settings (largest models, high resolution, TTA)"
+    )
     return parser.parse_args()
 
 
-def get_evaluators(model_names: List[str]) -> List:
+def get_evaluators(
+    model_names: List[str],
+    size: str = "n",
+    imgsz: int = 640,
+    tta: bool = False,
+) -> List:
     """
     Get evaluator instances for specified models.
 
     Args:
         model_names: List of model names to evaluate.
+        size: YOLO model size variant ('n', 's', 'm', 'l', 'x').
+        imgsz: Input image size for YOLO models.
+        tta: Enable Test-Time Augmentation for YOLO models.
 
     Returns:
         List of evaluator instances.
     """
-    evaluator_map = {
-        "yolov8": YOLOv8Evaluator,
-        "yolov10": YOLOv10Evaluator,
-        "ssd": SSDEvaluator,
-        "faster_rcnn": FasterRCNNEvaluator,
-    }
-
     if "all" in model_names:
-        model_names = list(evaluator_map.keys())
+        model_names = ["yolov8", "yolov10", "ssd", "faster_rcnn"]
 
     evaluators = []
     for name in model_names:
-        if name in evaluator_map:
-            evaluators.append(evaluator_map[name]())
+        if name == "yolov8":
+            evaluators.append(YOLOv8Evaluator(size=size, imgsz=imgsz, augment=tta))
+        elif name == "yolov10":
+            evaluators.append(YOLOv10Evaluator(size=size, imgsz=imgsz, augment=tta))
+        elif name == "ssd":
+            evaluators.append(SSDEvaluator(use_retinanet=False))
+        elif name == "retinanet":
+            evaluators.append(SSDEvaluator(use_retinanet=True))
+        elif name == "faster_rcnn":
+            evaluators.append(FasterRCNNEvaluator(backbone="resnet50"))
+        elif name == "fcos":
+            evaluators.append(FasterRCNNEvaluator(backbone="fcos"))
         else:
             print(f"WARNING: Unknown model '{name}', skipping.")
 
@@ -101,8 +134,20 @@ def main():
         num_images=5000,
     )
 
+    # Handle max-accuracy mode
+    size = args.size
+    imgsz = args.imgsz
+    tta = args.tta
+
+    if args.max_accuracy:
+        print("\n*** MAX ACCURACY MODE ENABLED ***")
+        print("Using: size=x, imgsz=1280, TTA=True\n")
+        size = "x"
+        imgsz = 1280
+        tta = True
+
     # Get evaluators
-    evaluators = get_evaluators(args.models)
+    evaluators = get_evaluators(args.models, size=size, imgsz=imgsz, tta=tta)
 
     if not evaluators:
         print("No models to evaluate.")

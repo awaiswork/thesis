@@ -11,7 +11,9 @@ from PIL import Image
 from tqdm import tqdm
 from torchvision.models.detection import (
     fasterrcnn_resnet50_fpn_v2,
-    FasterRCNN_ResNet50_FPN_V2_Weights
+    FasterRCNN_ResNet50_FPN_V2_Weights,
+    fcos_resnet50_fpn,
+    FCOS_ResNet50_FPN_Weights,
 )
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
@@ -34,13 +36,28 @@ from src.models.base import (
 class FasterRCNNEvaluator(BaseEvaluator):
     """Evaluator for Faster R-CNN object detection model."""
 
+    # Model configurations
+    MODEL_CONFIGS = {
+        "resnet50": {
+            "name": "Faster R-CNN",
+            "parameters": 43_712_278,
+            "gflops": 134.4,
+        },
+        "fcos": {
+            "name": "FCOS",
+            "parameters": 32_269_600,
+            "gflops": 128.2,
+        },
+    }
+
     def __init__(
         self,
         images_dir: Optional[str] = None,
         ann_file: Optional[str] = None,
         score_threshold: float = SCORE_THRESHOLD,
         max_detections: int = MAX_DETECTIONS,
-        device: Optional[torch.device] = None
+        device: Optional[torch.device] = None,
+        backbone: str = "resnet50",
     ):
         """
         Initialize Faster R-CNN evaluator.
@@ -51,31 +68,39 @@ class FasterRCNNEvaluator(BaseEvaluator):
             score_threshold: Minimum score for detections.
             max_detections: Maximum detections per image.
             device: PyTorch device to use.
+            backbone: Backbone type ('resnet50' or 'fcos' for anchor-free detection).
         """
         super().__init__(device)
         self.images_dir = Path(images_dir or COCO_SUBSET_IMAGES)
         self.ann_file = str(ann_file or COCO_SUBSET_ANN_FILE)
         self.score_threshold = score_threshold
         self.max_detections = max_detections
+        self.backbone = backbone
 
     @property
     def model_name(self) -> str:
-        return "Faster R-CNN"
+        return self.MODEL_CONFIGS.get(self.backbone, self.MODEL_CONFIGS["resnet50"])["name"]
 
     def load_model(self) -> None:
-        """Load Faster R-CNN model with COCO pretrained weights."""
-        print("Loading Faster R-CNN (ResNet50-FPN v2, COCO pretrained)...")
-        weights = FasterRCNN_ResNet50_FPN_V2_Weights.DEFAULT
-        self.model = fasterrcnn_resnet50_fpn_v2(weights=weights)
+        """Load Faster R-CNN or FCOS model with COCO pretrained weights."""
+        if self.backbone == "fcos":
+            print("Loading FCOS (ResNet50-FPN, COCO pretrained)...")
+            weights = FCOS_ResNet50_FPN_Weights.COCO_V1
+            self.model = fcos_resnet50_fpn(weights=weights)
+        else:
+            print("Loading Faster R-CNN (ResNet50-FPN v2, COCO pretrained)...")
+            weights = FasterRCNN_ResNet50_FPN_V2_Weights.DEFAULT
+            self.model = fasterrcnn_resnet50_fpn_v2(weights=weights)
         self.model.to(self.device)
         self.model.eval()
 
     def get_model_info(self) -> ModelInfo:
-        """Get Faster R-CNN model information."""
+        """Get model information."""
+        config = self.MODEL_CONFIGS.get(self.backbone, self.MODEL_CONFIGS["resnet50"])
         return ModelInfo(
             name=self.model_name,
-            parameters=43_712_278,  # Faster R-CNN ResNet50-FPN v2
-            gflops=134.4,  # Approximate GFLOPs
+            parameters=config["parameters"],
+            gflops=config["gflops"],
             input_size=800,  # Default min size
         )
 

@@ -2,66 +2,180 @@
   "metadata": {
     "dataset_name": "COCO val2017 subset",
     "num_images": 5000,
-    "evaluation_date": "2025-11-29T11:07:52.339551"
+    "evaluation_date": "2025-11-29T12:01:21.847201"
   },
   "results": [
     {
-      "model_name": "YOLOv10n",
-      "map50": 53.15068514803522,
-      "map50_95": 38.18873086193114,
-      "map75": 63.892354692874974,
-      "precision": 64.16052387881153,
-      "recall": 48.6654971840632,
-      "f1_score": 55.349001316146655,
-      "time_per_image_ms": 44.357188606262206,
-      "fps": 22.544260162124505,
+      "model_name": "YOLOv8x",
+      "map50": 70.3984273721624,
+      "map50_95": 53.89380219680302,
+      "map75": 77.16198958996459,
+      "precision": 73.70672303408948,
+      "recall": 64.45281439547867,
+      "f1_score": 68.76985588978125,
+      "time_per_image_ms": 7.246977758407593,
+      "fps": 137.98855651790132,
       "num_images": 5000,
-      "total_time_seconds": 221.78594303131104,
-      "timestamp": "2025-11-29T11:11:34.342684",
+      "total_time_seconds": 36.234888792037964,
+      "timestamp": "2025-11-29T12:01:58.250916",
       "ap_by_size": {
         "small": 0,
         "medium": 0,
         "large": 0
       },
       "timing_breakdown": {
-        "preprocess_ms": 0.14407781717600301,
-        "inference_ms": 8.727332301181741,
-        "postprocess_ms": 0.6939995514199836,
-        "total_ms": 9.565409669777727
+        "preprocess_ms": 0.30363291399553416,
+        "inference_ms": 5.273952207062393,
+        "postprocess_ms": 0.25679637072607875,
+        "total_ms": 5.834381491784006
       },
       "model_info": {
-        "name": "YOLOv10n",
+        "name": "YOLOv8x",
+        "parameters": 3151904,
+        "gflops": 8.7,
+        "input_size": 640
+      },
+      "hardware_info": {
+        "device": "cuda",
+        "device_name": "NVIDIA GeForce RTX 4090",
+        "pytorch_version": "2.9.1+cu128",
+        "python_version": "3.12.3",
+        "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.39"
+      }
+    },
+    {
+      "model_name": "YOLOv10x",
+      "map50": 70.67561963522506,
+      "map50_95": 54.26171589011909,
+      "map75": 78.23839232797299,
+      "precision": 74.83053200082311,
+      "recall": 63.59729582122158,
+      "f1_score": 68.75813273951928,
+      "time_per_image_ms": 6.32764892578125,
+      "fps": 158.03658068411784,
+      "num_images": 5000,
+      "total_time_seconds": 31.63824462890625,
+      "timestamp": "2025-11-29T12:02:29.943099",
+      "ap_by_size": {
+        "small": 0,
+        "medium": 0,
+        "large": 0
+      },
+      "timing_breakdown": {
+        "preprocess_ms": 0.29695356907323,
+        "inference_ms": 4.597148996032774,
+        "postprocess_ms": 0.03770323833450675,
+        "total_ms": 4.93180580344051
+      },
+      "model_info": {
+        "name": "YOLOv10x",
         "parameters": 2299264,
         "gflops": 6.7,
         "input_size": 640
       },
       "hardware_info": {
-        "device": "mps",
-        "device_name": "Apple Silicon GPU",
-        "pytorch_version": "2.9.1",
-        "python_version": "3.12.1",
-        "platform": "macOS-15.3-arm64-arm-64bit"
+        "device": "cuda",
+        "device_name": "NVIDIA GeForce RTX 4090",
+        "pytorch_version": "2.9.1+cu128",
+        "python_version": "3.12.3",
+        "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.39"
+      }
+    },
+    {
+      "model_name": "RetinaNet",
+      "map50": 61.74559133457955,
+      "map50_95": 41.48925444728269,
+      "map75": 43.88634101908272,
+      "precision": null,
+      "recall": 58.7727792335778,
+      "f1_score": null,
+      "time_per_image_ms": 18.135171461105347,
+      "fps": 55.14146927944455,
+      "num_images": 5000,
+      "total_time_seconds": 90.67585730552673,
+      "timestamp": "2025-11-29T12:04:25.421665",
+      "ap_by_size": {
+        "small": 26.958462281699386,
+        "medium": 45.822964819363065,
+        "large": 53.68804863829426
+      },
+      "timing_breakdown": {
+        "preprocess_ms": 2.5213911533355713,
+        "inference_ms": 14.64067521095276,
+        "postprocess_ms": 0.9725381851196289,
+        "total_ms": 18.134604549407957
+      },
+      "model_info": {
+        "name": "RetinaNet",
+        "parameters": 38198935,
+        "gflops": 152.0,
+        "input_size": 800
+      },
+      "hardware_info": {
+        "device": "cuda",
+        "device_name": "NVIDIA GeForce RTX 4090",
+        "pytorch_version": "2.9.1+cu128",
+        "python_version": "3.12.3",
+        "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.39"
+      }
+    },
+    {
+      "model_name": "Faster R-CNN",
+      "map50": 67.4996856195116,
+      "map50_95": 46.72500164945351,
+      "map75": 51.16058895298187,
+      "precision": null,
+      "recall": null,
+      "f1_score": null,
+      "time_per_image_ms": 20.782813692092894,
+      "fps": 48.1166801962173,
+      "num_images": 5000,
+      "total_time_seconds": 103.91406846046448,
+      "timestamp": "2025-11-29T12:06:22.276737",
+      "ap_by_size": {
+        "small": 30.649128866768272,
+        "medium": 50.51615355727422,
+        "large": 60.16104970367601
+      },
+      "timing_breakdown": {
+        "preprocess_ms": 2.3584575176239015,
+        "inference_ms": 18.3345516204834,
+        "postprocess_ms": 0.06940722465515137,
+        "total_ms": 20.76241636276245
+      },
+      "model_info": {
+        "name": "Faster R-CNN",
+        "parameters": 43712278,
+        "gflops": 134.4,
+        "input_size": 800
+      },
+      "hardware_info": {
+        "device": "cuda",
+        "device_name": "NVIDIA GeForce RTX 4090",
+        "pytorch_version": "2.9.1+cu128",
+        "python_version": "3.12.3",
+        "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.39"
       }
     }
   ],
   "summary": {
-    "num_models": 1,
+    "num_models": 4,
     "best_map50_95": {
-      "model": "YOLOv10n",
-      "value": 38.18873086193114
+      "model": "YOLOv10x",
+      "value": 54.26171589011909
     },
     "best_map50": {
-      "model": "YOLOv10n",
-      "value": 53.15068514803522
+      "model": "YOLOv10x",
+      "value": 70.67561963522506
     },
     "fastest": {
-      "model": "YOLOv10n",
-      "fps": 22.544260162124505
+      "model": "YOLOv10x",
+      "fps": 158.03658068411784
     },
     "slowest": {
-      "model": "YOLOv10n",
-      "fps": 22.544260162124505
+      "model": "Faster R-CNN",
+      "fps": 48.1166801962173
     },
-    "speed_ratio": 1.0
+    "speed_ratio": 3.284444812893428
   }
 }

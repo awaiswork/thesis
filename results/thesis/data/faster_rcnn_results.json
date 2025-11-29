@@ -1,0 +1,34 @@
+{
+  "family": "Faster R-CNN",
+  "num_models": 1,
+  "results": [
+    {
+      "model_name": "Faster R-CNN",
+      "model_family": "Faster R-CNN",
+      "model_variant": "base",
+      "map50": 67.4996856195116,
+      "map50_95": 46.72500164945351,
+      "map75": 51.16058895298187,
+      "precision": null,
+      "recall": null,
+      "f1_score": null,
+      "ap_small": 30.649128866768272,
+      "ap_medium": 50.51615355727422,
+      "ap_large": 60.16104970367601,
+      "fps": 48.43735097196636,
+      "latency_ms": 20.645224809646606,
+      "preprocess_ms": 2.3208688259124757,
+      "inference_ms": 18.239663934707643,
+      "postprocess_ms": 0.0651632308959961,
+      "parameters": 43712278,
+      "gflops": 134.4,
+      "model_size_mb": 0.0,
+      "input_size": 800,
+      "num_images": 5000,
+      "total_time_seconds": 103.22612404823303,
+      "timestamp": "2025-11-29T15:14:24.859897",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 4090"
+    }
+  ]
+}

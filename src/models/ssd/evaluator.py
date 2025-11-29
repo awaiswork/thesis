@@ -1,11 +1,14 @@
-"""SSD model evaluator."""
+"""SSD and RetinaNet model evaluator."""
 
 from typing import Optional, List, Dict, Any
 
 import torch
 from torchvision.datasets import CocoDetection
 from torchvision.transforms import ToTensor
-from torchvision.models.detection import ssd300_vgg16, SSD300_VGG16_Weights
+from torchvision.models.detection import (
+    ssd300_vgg16, SSD300_VGG16_Weights,
+    retinanet_resnet50_fpn_v2, RetinaNet_ResNet50_FPN_V2_Weights,
+)
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 
@@ -31,36 +34,51 @@ class SSDEvaluator(BaseEvaluator):
         images_dir: Optional[str] = None,
         ann_file: Optional[str] = None,
         score_threshold: float = SCORE_THRESHOLD,
-        device: Optional[torch.device] = None
+        device: Optional[torch.device] = None,
+        use_retinanet: bool = False,
     ):
         """
-        Initialize SSD evaluator.
+        Initialize SSD/RetinaNet evaluator.
 
         Args:
             images_dir: Path to images directory.
             ann_file: Path to COCO annotation file.
             score_threshold: Minimum score for detections.
             device: PyTorch device to use.
+            use_retinanet: Use RetinaNet instead of SSD300 for better accuracy.
         """
         super().__init__(device)
         self.images_dir = str(images_dir or COCO_SUBSET_IMAGES)
         self.ann_file = str(ann_file or COCO_SUBSET_ANN_FILE)
         self.score_threshold = score_threshold
+        self.use_retinanet = use_retinanet
 
     @property
     def model_name(self) -> str:
-        return "SSD300"
+        return "RetinaNet" if self.use_retinanet else "SSD300"
 
     def load_model(self) -> None:
-        """Load SSD300 model with COCO pretrained weights."""
-        print("Loading SSD300_VGG16 (COCO pretrained)...")
-        weights = SSD300_VGG16_Weights.COCO_V1
-        self.model = ssd300_vgg16(weights=weights)
+        """Load SSD300 or RetinaNet model with COCO pretrained weights."""
+        if self.use_retinanet:
+            print("Loading RetinaNet_ResNet50_FPN_v2 (COCO pretrained)...")
+            weights = RetinaNet_ResNet50_FPN_V2_Weights.COCO_V1
+            self.model = retinanet_resnet50_fpn_v2(weights=weights)
+        else:
+            print("Loading SSD300_VGG16 (COCO pretrained)...")
+            weights = SSD300_VGG16_Weights.COCO_V1
+            self.model = ssd300_vgg16(weights=weights)
         self.model.to(self.device)
         self.model.eval()
 
     def get_model_info(self) -> ModelInfo:
-        """Get SSD model information."""
+        """Get model information."""
+        if self.use_retinanet:
+            return ModelInfo(
+                name=self.model_name,
+                parameters=38_198_935,  # RetinaNet ResNet50-FPN v2
+                gflops=152.0,
+                input_size=800,
+            )
         return ModelInfo(
             name=self.model_name,
             parameters=35_641_826,  # SSD300 VGG16 parameters

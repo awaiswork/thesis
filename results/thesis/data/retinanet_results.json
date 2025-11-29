@@ -1,0 +1,34 @@
+{
+  "family": "RetinaNet",
+  "num_models": 1,
+  "results": [
+    {
+      "model_name": "RetinaNet",
+      "model_family": "RetinaNet",
+      "model_variant": "base",
+      "map50": 61.74559133457955,
+      "map50_95": 41.48925444728269,
+      "map75": 43.88634101908272,
+      "precision": null,
+      "recall": 58.7727792335778,
+      "f1_score": null,
+      "ap_small": 26.958462281699386,
+      "ap_medium": 45.822964819363065,
+      "ap_large": 53.68804863829426,
+      "fps": 55.02113205358978,
+      "latency_ms": 18.17483506202698,
+      "preprocess_ms": 2.501556158065796,
+      "inference_ms": 14.689180088043212,
+      "postprocess_ms": 0.9835142612457275,
+      "parameters": 38198935,
+      "gflops": 152.0,
+      "model_size_mb": 0.0,
+      "input_size": 800,
+      "num_images": 5000,
+      "total_time_seconds": 90.87417531013489,
+      "timestamp": "2025-11-29T15:12:28.976091",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 4090"
+    }
+  ]
+}
